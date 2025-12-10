@@ -1,0 +1,74 @@
+html{
+    scroll-behavior:smooth;
+    overflow-x: hidden;
+}
+
+.horizontal-rotate {
+  animation: rotateHorizontal 10s linear infinite;
+}
+
+@keyframes rotateHorizontal {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+
+
+.rotating-image {
+  animation: rotate 4s linear infinite; /* Use the 'rotate' animation with a duration of 4 seconds */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg); /* Initial rotation at 0 degrees */
+  }
+  to {
+    transform: rotate(360deg); /* Rotate 360 degrees to complete the circle */
+  }
+}
+
+
+
+
+
+
+::-webkit-scrollbar-track{
+	
+	background-color: lightgray;
+}
+
+::-webkit-scrollbar
+{
+	width: 11px;
+	
+}
+
+
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+	background-color: purple;
+
+}
+
+
+.git::-webkit-scrollbar-track{
+	
+	background-color: lightgray;
+  border-radius: 10px;
+}
+
+.git::-webkit-scrollbar
+{
+	height: 6px;
+	
+}
+

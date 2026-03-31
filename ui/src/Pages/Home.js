@@ -103,6 +103,7 @@ import ProfessionalHighlights from "../Components/ProfessionalHighlights";
 import FeaturedProjects from "../Components/FeaturedProjects";
 import MoreProjects from "../Components/MoreProjects";
 import GetInTouch from "../Components/GetInTouch";
+import Tilt3D from "../Components/Tilt3D";
 
 // Animation variants for scroll-triggered animations
 const fadeInUp = {
@@ -111,16 +112,6 @@ const fadeInUp = {
     opacity: 1, 
     y: 0,
     transition: { duration: 0.6, ease: "easeOut" }
-  }
-};
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
   }
 };
 
@@ -134,8 +125,11 @@ export default function Home() {
       {/* Left Content */}
       <div className="max-w-xl space-y-6 z-10">
         <p className="text-pink-400 font-medium">Hello, I'm</p>
-        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-          <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight [perspective:800px]">
+          <span
+            className="inline-block bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_12px_40px_rgba(168,85,247,0.45)] md:[transform:translateZ(0)_rotateX(2deg)]"
+            style={{ transformStyle: "preserve-3d" }}
+          >
             Jeet Raj
           </span>
         </h1>
@@ -191,48 +185,58 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Right Side Image */}
-      <div className="relative mt-12 md:mt-0 z-10">
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="relative group"
+      {/* Right Side Image — interactive 3D tilt */}
+      <div className="relative mt-12 md:mt-0 z-10 flex justify-center">
+        <Tilt3D
+          className="inline-block cursor-default"
+          maxTilt={16}
+          perspective={1200}
+          scale={1.03}
         >
-          {/* Avatar with glow */}
-          <img
-            src={devAnimator}
-            alt="Jeet Raj - Full Stack Developer"
-            loading="eager"
-            className="w-72 md:w-96 rounded-full border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.4)] group-hover:scale-105 transition"
-          />
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="relative group [transform-style:preserve-3d]"
+          >
+            {/* Depth layer behind portrait */}
+            <div
+              className="absolute inset-2 rounded-full bg-gradient-to-br from-purple-600/40 to-pink-600/30 blur-xl scale-95 md:scale-90 -z-10 [transform:translateZ(-24px)]"
+              aria-hidden
+            />
+            <img
+              src={devAnimator}
+              alt="Jeet Raj - Full Stack Developer"
+              loading="eager"
+              className="relative w-72 md:w-96 rounded-full border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.4),0_20px_50px_rgba(0,0,0,0.35)] [transform:translateZ(12px)] transition-shadow duration-300"
+            />
 
-          {/* Floating Badges */}
-          <motion.span
-            initial={{ y: -10 }}
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 3 }}
-            className="absolute -top-4 right-0 px-3 py-1 text-sm bg-gradient-to-r from-purple-400 to-pink-500 rounded-full shadow-lg"
-          >
-            AI Engineer
-          </motion.span>
-          <motion.span
-            initial={{ y: 10 }}
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 4 }}
-            className="absolute bottom-8 -left-6 px-3 py-1 text-sm bg-purple-500/60 rounded-full shadow-md"
-          >
-            2+ Years Experience
-          </motion.span>
-          <motion.span
-            initial={{ y: -8 }}
-            animate={{ y: [0, -8, 0] }}
-            transition={{ repeat: Infinity, duration: 5 }}
-            className="absolute -bottom-6 right-6 px-3 py-1 text-sm bg-purple-700/70 rounded-full shadow-md"
-          >
-            Full Stack Developer
-          </motion.span>
-        </motion.div>
+            <motion.span
+              initial={{ y: -10 }}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 3 }}
+              className="absolute -top-4 right-0 px-3 py-1 text-sm bg-gradient-to-r from-purple-400 to-pink-500 rounded-full shadow-lg [transform:translateZ(28px)]"
+            >
+              AI Engineer
+            </motion.span>
+            <motion.span
+              initial={{ y: 10 }}
+              animate={{ y: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 4 }}
+              className="absolute bottom-8 -left-6 px-3 py-1 text-sm bg-purple-500/60 rounded-full shadow-md [transform:translateZ(22px)]"
+            >
+              2+ Years Experience
+            </motion.span>
+            <motion.span
+              initial={{ y: -8 }}
+              animate={{ y: [0, -8, 0] }}
+              transition={{ repeat: Infinity, duration: 5 }}
+              className="absolute -bottom-6 right-6 px-3 py-1 text-sm bg-purple-700/70 rounded-full shadow-md [transform:translateZ(26px)]"
+            >
+              Full Stack Developer
+            </motion.span>
+          </motion.div>
+        </Tilt3D>
       </div>
 
       {/* Background Glow Effect */}

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
+const NAV_LINKS = ["Home", "Skills", "Experience", "Projects", "Contact"];
+
 export default function Nav() {
   const [active, setActive] = useState("Home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const links = ["Home", "Skills", "Experience", "Projects", "Contact"];
-
   // Detect active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = links.map((link) => ({
+      const sections = NAV_LINKS.map((link) => ({
         id: link.toLowerCase(),
         element: document.getElementById(link.toLowerCase()),
       }));
@@ -71,7 +71,7 @@ export default function Nav() {
 
           {/* Desktop Links */}
           <div className="hidden md:flex space-x-4 text-sm font-medium">
-            {links.map((link) => (
+            {NAV_LINKS.map((link) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
@@ -107,7 +107,7 @@ export default function Nav() {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-2 rounded-2xl bg-black/95 backdrop-blur-lg border border-white/10 shadow-lg p-4">
             <div className="flex flex-col space-y-2">
-              {links.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <a
                   key={link}
                   href={`#${link.toLowerCase()}`}

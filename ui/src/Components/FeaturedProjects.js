@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
+import Tilt3D from "./Tilt3D";
 
 const featuredProjects = [
   {
@@ -31,24 +32,26 @@ const featuredProjects = [
   {
     id: 2,
     title: "Audio Transcription",
-    description: "YouTube and audio transcription tool using OpenAI Whisper or AssemblyAI for fast, accurate, and easy-to-use transcription. Supports batch processing, subtitle generation, and multiple audio formats with high accuracy.",
+    description:
+      "Full-stack app for transcribing audio and video with OpenAI Whisper (local inference), plus YouTube audio via yt-dlp, SRT subtitles, batch uploads, and a PostgreSQL-backed job dashboard with live progress (WebSocket, SSE fallback). FastAPI API and React (TypeScript, Vite) frontend; optional AssemblyAI routes in the codebase.",
     icon: "AT",
     iconBg: "bg-gradient-to-br from-cyan-500 to-cyan-700",
     keyAchievements: [
-      { text: "YouTube transcription", color: "bg-cyan-800/50 border-cyan-400/50" },
-      { text: "Multi-format support", color: "bg-cyan-800/50 border-cyan-400/50" },
-      { text: "Batch processing", color: "bg-cyan-800/50 border-cyan-400/50" },
-      { text: "High accuracy", color: "bg-cyan-800/50 border-cyan-400/50" },
+      { text: "Whisper + yt-dlp", color: "bg-cyan-800/50 border-cyan-400/50" },
+      { text: "SRT & batch jobs", color: "bg-cyan-800/50 border-cyan-400/50" },
+      { text: "Job dashboard", color: "bg-cyan-800/50 border-cyan-400/50" },
+      { text: "Live updates (WS/SSE)", color: "bg-cyan-800/50 border-cyan-400/50" },
     ],
     techStack: [
-      { text: "Python", color: "bg-blue-800/50 border-blue-400/50" },
-      { text: "OpenAI Whisper", color: "bg-purple-800/50 border-purple-400/50" },
-      { text: "AssemblyAI", color: "bg-indigo-800/50 border-indigo-400/50" },
-      { text: "YouTube API", color: "bg-red-800/50 border-red-400/50" },
+      { text: "FastAPI", color: "bg-teal-800/50 border-teal-400/50" },
+      { text: "Whisper / PyTorch", color: "bg-purple-800/50 border-purple-400/50" },
+      { text: "React + Vite", color: "bg-blue-800/50 border-blue-400/50" },
+      { text: "PostgreSQL", color: "bg-indigo-800/50 border-indigo-400/50" },
+      { text: "yt-dlp / FFmpeg", color: "bg-red-800/50 border-red-400/50" },
     ],
     links: {
       github: "https://github.com/jeetb89/Audio-Transcription",
-      liveDemo: null,
+      liveDemo: "https://audio-transcription-omega.vercel.app",
     },
   },
   {
@@ -123,11 +126,18 @@ export default function FeaturedProjects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-[#1f2937] border border-gray-700 rounded-xl p-6 shadow-lg hover:shadow-purple-500/20 transition-all duration-300 flex flex-col"
+              className="h-full min-h-[320px]"
             >
+              <Tilt3D
+                className="h-full"
+                innerClassName="h-full"
+                maxTilt={9}
+                perspective={1000}
+                scale={1.015}
+              >
+                <div className="bg-[#1f2937] border border-gray-700 rounded-xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.35)] hover:shadow-[0_24px_60px_rgba(168,85,247,0.12)] transition-shadow duration-300 flex flex-col h-full [transform-style:preserve-3d]">
               {/* Project Icon/Visual */}
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-4 [transform:translateZ(20px)]">
                 <div className={`w-24 h-24 ${project.iconBg} rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg`}>
                   {project.icon}
                 </div>
@@ -207,6 +217,8 @@ export default function FeaturedProjects() {
                   </a>
                 )}
               </div>
+                </div>
+              </Tilt3D>
             </motion.div>
           ))}
         </div>

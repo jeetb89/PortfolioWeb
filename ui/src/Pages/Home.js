@@ -121,7 +121,27 @@ export default function Home() {
 	
 	<section className="relative w-[100%] flex justify-evenly flex flex-col bg-gradient-to-br from-[#0a0a1a] via-[#111122] to-[#1a0a2a] text-white overflow-hidden">
     <section id="home" className="relative w-[100%] flex justify-evenly flex flex-col md:flex-row items-center justify-between   min-h-screen bg-gradient-to-br from-[#0a0a1a] via-[#111122] to-[#1a0a2a] text-white overflow-hidden">
-      
+
+      {/* Dot-grid overlay */}
+      <div className="absolute inset-0 grid-dots opacity-40 pointer-events-none" />
+
+      {/* Floating 3-D geometric shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Large rotating square */}
+        <div className="floating-geo w-28 h-28 border-2 border-purple-500/20 top-[18%] right-[28%]" style={{ transform: "rotate(45deg)", animationDuration: "9s" }} />
+        {/* Medium circle outline */}
+        <div className="floating-geo-b w-16 h-16 rounded-full border border-pink-500/20 top-[38%] right-[14%]" style={{ animationDuration: "7s", animationDelay: "1.2s" }} />
+        {/* Small square top-left */}
+        <div className="floating-geo-c w-10 h-10 border border-purple-400/20 top-[12%] left-[10%]" style={{ animationDuration: "11s", animationDelay: "0.5s", transform: "rotate(25deg)" }} />
+        {/* Large faint square bottom-left */}
+        <div className="floating-geo w-36 h-36 border border-purple-300/10 bottom-[22%] left-[22%]" style={{ animationDuration: "13s", animationDelay: "2s", transform: "rotate(30deg)" }} />
+        {/* Triangle (CSS clip) */}
+        <div className="floating-geo-b top-[60%] right-[35%]" style={{ width: 0, height: 0, borderLeft: "14px solid transparent", borderRight: "14px solid transparent", borderBottom: "24px solid rgba(168,85,247,0.14)", animationDuration: "10s", animationDelay: "3s" }} />
+        {/* Small filled dot cluster */}
+        <div className="floating-geo-c w-4 h-4 rounded-full bg-pink-500/15 top-[70%] right-[18%]" style={{ animationDuration: "6s", animationDelay: "0.8s" }} />
+        <div className="floating-geo   w-3 h-3 rounded-full bg-purple-500/20 top-[28%] left-[32%]" style={{ animationDuration: "8s", animationDelay: "1.5s" }} />
+      </div>
+
       {/* Left Content */}
       <div className="max-w-xl space-y-6 z-10">
         <p className="text-pink-400 font-medium">Hello, I'm</p>

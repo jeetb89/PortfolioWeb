@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { MapPin, Mail, Linkedin, Github, Send } from "lucide-react";
 
 export default function GetInTouch() {
@@ -90,22 +91,39 @@ export default function GetInTouch() {
   };
 
   return (
-    <div className="w-full py-16 px-4 md:px-8 bg-gradient-to-br from-[#0a0a1a] via-[#111122] to-[#1a0a2a]">
-      <div className="max-w-7xl mx-auto">
+    <div className="relative w-full py-16 px-4 md:px-8 bg-gradient-to-br from-[#0a0a1a] via-[#111122] to-[#1a0a2a] overflow-hidden">
+      {/* Dot grid */}
+      <div className="absolute inset-0 grid-dots opacity-20 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3 heading-3d">
             Get In Touch
           </h1>
           <p className="text-gray-400 text-base md:text-lg">
             Let's discuss your next project or just say hello
           </p>
-        </div>
+        </motion.div>
 
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column: Let's Connect */}
-          <div className="bg-[#1f2937] border border-gray-700 rounded-xl p-6 md:p-8 shadow-lg">
+          <motion.div
+            className="relative bg-gradient-to-br from-[#1f2937] to-[#151f2e] border border-gray-700/60 rounded-xl p-6 md:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.45)] card-3d-hover overflow-hidden"
+            style={{ transformStyle: "preserve-3d" }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+          >
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/5 to-transparent pointer-events-none" />
             <h2 className="text-2xl font-bold text-white mb-6">Let's Connect</h2>
 
             {/* Contact Information */}
@@ -171,10 +189,18 @@ export default function GetInTouch() {
                 I'm currently open to new opportunities and exciting projects. Let's discuss how we can work together!
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Send a Message Form */}
-          <div className="bg-[#1f2937] border border-gray-700 rounded-xl p-6 md:p-8 shadow-lg">
+          <motion.div
+            className="relative bg-gradient-to-br from-[#1f2937] to-[#151f2e] border border-gray-700/60 rounded-xl p-6 md:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.45)] card-3d-hover overflow-hidden"
+            style={{ transformStyle: "preserve-3d" }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+          >
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-pink-500/5 to-transparent pointer-events-none" />
             <h2 className="text-2xl font-bold text-white mb-6">Send a Message</h2>
 
             {/* Status Message */}
@@ -273,7 +299,7 @@ export default function GetInTouch() {
                 )}
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
